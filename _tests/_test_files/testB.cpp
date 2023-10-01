@@ -305,9 +305,32 @@ bool test_erase_all(bool debug){
     }
     
     cout<<boolalpha<<"tree empty?: "<<(mBTree.empty())<<endl; 
+  }
+
+  if(debug){
+    int arr[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}; 
+    BST<int> mBtree(arr, 16); 
+
+    cout<<"before erase: "<<endl; 
+    cout<<mBtree<<endl;
+
+    mBtree.clear_all(); 
+    cout<<"after clear: "<<endl; 
+    cout<<mBtree<<endl; 
+    cout<<boolalpha<<"tree empty?: "<<mBtree.empty()<<endl; 
 
   }
 }
+
+bool test_sort_one_arg(bool debug){
+  if(debug){
+    int arr[] = {0,1,2,3,4,5,-1}; 
+    tree_node<int>* ourRoot = tree_from_sorted_list(arr); 
+    cout<<"new tree: "<<endl; 
+    tree_print(ourRoot, 0, cout);
+  }
+}
+
 bool test_stub(bool debug = false)
 {
   if (debug){
@@ -360,7 +383,11 @@ TEST(TEST_BST_FUNCTIONS, testTreeFromList){
 }
 
 TEST(TEST_BST_FUNCTION, testEraseAll){
-  EXPECT_EQ(1, test_erase_all(true)); 
+  EXPECT_EQ(1, test_erase_all(false)); 
+}
+
+TEST(TEST_BST_FUNCTIONS, testSortOneArg){
+  EXPECT_EQ(1, test_sort_one_arg(true));
 }
 
 int main(int argc, char **argv) {

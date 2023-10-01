@@ -131,8 +131,9 @@ bool tree_erase(tree_node<T>*& root, const T& target){
         }
         else{
             T maxVal; 
-            //tree_remove_max(root, root->item);  //? B. //if problem
-            tree_remove_max(root, maxVal); 
+            tree_remove_max(root, root->item);  //? B. //if problem
+            //because we want to actually remove the real item and this is not removing it? idek
+            //tree_remove_max(root, maxVal); 
             root->_item = maxVal; 
             //put maxVal into root 
         }
@@ -158,13 +159,14 @@ void tree_remove_max(tree_node<T>* &root, T& max_value){
         return; //empty so cannot remove 
     } 
 
+    //want to remove max so going right
     if(root->_right == NULL){ //what if it has a left child 
         max_value = root->_item; 
         if(root->_left != NULL){
             tree_node<T>* leftNode = root->_left; 
             delete root; 
             root = leftNode; //must ask professor 
-        }else{
+        }else{ //else delete root immediately since has no left child
             delete root; 
             root = NULL;
             return; 
@@ -277,11 +279,11 @@ void tree_add(tree_node<T>* & dest, const tree_node<T>* src){ ///so far working
         tree_insert(dest, src->_item); 
         tree_add(dest, src->_right); 
         return; 
-    } //src == null don't want to do anything since 
+    } //src == null don't want to do anything since there's nothing to append
     
    if(dest && src){
         tree_add(dest->_left, src->_left); 
-        tree_insert(dest, src->_item); //hmmmm is this really efficient?? 
+        tree_insert(dest, src->_item);  
         tree_add(dest->_right, src->_right); 
     }
 
@@ -322,7 +324,11 @@ tree_node<T>* tree_from_sorted_list(const T* a, int size){//not snug array Im gu
 //0 1 2 3 4 5?
 template <typename T> //sorted array of ints -> tree
 tree_node<T>* tree_from_sorted_list(const T* a){ //snug array Im guessing? 
-    tree_node<T>* ourRoot = tree_from_sorted_list(a, 10); //cmake error 2 and 3 //idk putting 10 for now b/c I have no idea what goes here 
+    int size = 0; 
+    while(a[size] != -1){
+        size++;
+    }
+    tree_node<T>* ourRoot = tree_from_sorted_list(a, size); //cmake error 2 and 3 //idk putting 10 for now b/c I have no idea what goes here 
     return ourRoot; 
 } //?
 
