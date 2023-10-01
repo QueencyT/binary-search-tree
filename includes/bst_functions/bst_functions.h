@@ -167,7 +167,6 @@ void tree_remove_max(tree_node<T>* &root, T& max_value){
         }
     }
     tree_remove_max(root->_right, max_value);  //Height? must ask professor
-    root->update_height(); 
 }
 
 template <typename T> //print in_order
