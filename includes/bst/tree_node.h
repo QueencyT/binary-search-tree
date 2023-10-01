@@ -58,6 +58,7 @@ struct tree_node{
 
     friend ostream& operator <<(ostream& outs, const tree_node<T>& t_node){
         outs<<"|"<<t_node._item<<"|";
+        return outs; //cmake error 1 
     }
 };
 

@@ -2,6 +2,7 @@
 #define BST_FUNCTIONS_H 
 
 #include <iostream>
+#include <iomanip>
 #include <math.h>
 #include "../../includes/bst/tree_node.h"
 
@@ -318,10 +319,10 @@ tree_node<T>* tree_from_sorted_list(const T* a, int size){//not snug array Im gu
     return ourRoot;  
 } //?
 
-
+//0 1 2 3 4 5
 template <typename T> //sorted array of ints -> tree
 tree_node<T>* tree_from_sorted_list(const T* a){ //snug array Im guessing 
-    tree_node<T> ourRoot = tree_from_sorted_list(a, a.size()); 
+    tree_node<T>* ourRoot = tree_from_sorted_list(a, 10); //cmake error 2 and 3 //idk putting five for now b/c I have no idea what goes here 
     return ourRoot; 
 } //?
 
