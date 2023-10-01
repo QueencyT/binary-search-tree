@@ -3,6 +3,289 @@
 #include <iomanip>
 using namespace std;
 
+#include "../../includes/bst_functions/bst_functions.h"
+
+bool test_print(bool debug){
+  tree_node<int>* ourRoot = new tree_node<int>(25); 
+  tree_insert(ourRoot, 39); 
+  tree_insert(ourRoot, 12); 
+  tree_print(ourRoot, 0, cout); //ok so far print is working 
+  return true; 
+}
+
+bool test_pre_order(bool debug){
+  tree_node<int>* ourRoot = new tree_node<int>(25); 
+  tree_insert(ourRoot, 12); 
+  tree_insert(ourRoot, 39); 
+
+  if(debug){
+    cout<<"printing the simple case pre order:\n"; 
+    pre_order(ourRoot, cout); 
+  }
+
+  if(debug){
+    cout<<"printing the complicated case pre order:\n"; 
+    tree_insert(ourRoot, 45); 
+    tree_insert(ourRoot, 10); 
+    tree_insert(ourRoot, 14); 
+    tree_print(ourRoot, 0, cout); 
+    pre_order(ourRoot, cout); 
+  }
+
+  if(debug){
+    cout<<"testing pre_order_string\n"; 
+    string preOrder = pre_order_string(ourRoot); 
+    cout<<"preOrder: "<<preOrder<<endl; 
+  }
+  return true; 
+}
+
+bool test_post_order(bool debug){
+  tree_node<int>* ourRoot = new tree_node<int>(25); 
+  tree_insert(ourRoot, 12); 
+  tree_insert(ourRoot, 39);  
+
+  if(debug){
+    cout<<"printing the simple case post order:\n"; 
+    post_order(ourRoot, cout); 
+  }
+
+  if(debug){
+    cout<<"printing the complicated case post order:\n"; 
+    tree_insert(ourRoot, 45); 
+    tree_insert(ourRoot, 10); 
+    tree_insert(ourRoot, 14); 
+    tree_print(ourRoot, 0, cout); 
+    post_order(ourRoot, cout); 
+  }
+
+  if(debug){
+    cout<<"testing post_order_string\n"; 
+    string postOrder = post_order_string(ourRoot); 
+    cout<<"postOrder: "<<postOrder<<endl; 
+  }
+
+}
+
+bool test_in_order(bool debug){
+  tree_node<int>* ourRoot = new tree_node<int>(25); 
+  tree_insert(ourRoot, 12); 
+  tree_insert(ourRoot, 39);  
+
+  if(debug){
+    cout<<"printing the simple case in order:\n"; 
+    in_order(ourRoot, cout); 
+  }
+
+  if(debug){
+    cout<<"printing the complicated case in order:\n"; 
+    tree_insert(ourRoot, 30);
+    tree_insert(ourRoot, 45); 
+    tree_insert(ourRoot, 10); 
+    tree_insert(ourRoot, 14); 
+    tree_print(ourRoot, 0, cout); 
+    in_order(ourRoot, cout); 
+  }
+
+  if(debug){
+    cout<<"testing in_order_string\n"; 
+    string inOrder = in_order_string(ourRoot); 
+    cout<<"inOrder: "<<inOrder<<endl; 
+  }
+  return true;
+}
+
+bool test_clear(bool debug){
+  tree_node<int>* ourRoot = new tree_node<int>(25); 
+  tree_insert(ourRoot, 12); 
+  tree_insert(ourRoot, 39);  
+
+  if(debug){
+    cout<<"before clear: "<<endl; 
+    tree_print(ourRoot, 0, cout); //gotta make sure height is set correctly to
+    tree_clear(ourRoot); 
+    cout<<"after clear: "<<endl; 
+    tree_print(ourRoot, 0, cout); 
+  }
+}
+
+bool test_erase(bool debug){
+  if(debug){
+    tree_node<int>* ourRoot = new tree_node<int>(25); 
+    tree_insert(ourRoot, 12); 
+    tree_insert(ourRoot, 39); 
+
+    tree_print(ourRoot, 0, cout); 
+    cout<<"erasing 12: \n"; 
+    tree_erase(ourRoot, 12); 
+    tree_print(ourRoot, 0, cout);
+  }
+
+  if(debug){
+    tree_node<int>* ourRoot = new tree_node<int>(25); 
+    tree_insert(ourRoot, 12); 
+    tree_insert(ourRoot, 39); 
+    cout<<"simple erase case root:\n"; 
+    tree_print_debug(ourRoot, 0, cout); 
+
+    cout<<"erasing root 25: \n";
+    tree_erase(ourRoot, 25);
+    tree_print_debug(ourRoot, 0, cout); 
+  }
+
+  if(debug){
+    tree_node<int>* ourRoot = new tree_node<int>(25); 
+    tree_insert(ourRoot, 12); 
+    tree_insert(ourRoot, 39); 
+    tree_insert(ourRoot, 10);
+    tree_insert(ourRoot, 14);  
+    cout<<"complex erase case root:\n"; 
+    tree_print_debug(ourRoot, 0, cout); 
+
+    cout<<"erasing root 12: \n";
+    tree_erase(ourRoot, 12); //what if duplicate values ?
+    tree_print_debug(ourRoot, 0, cout); 
+  }
+  return true; 
+}
+
+bool test_copy(bool debug){
+  if(debug){
+    tree_node<int>* ourRoot = new tree_node<int>(25); 
+    tree_insert(ourRoot, 12); 
+    tree_insert(ourRoot, 39); 
+    cout<<"simple case copy: "<<endl; 
+    tree_node<int>* copyRoot; 
+    copyRoot = tree_copy(ourRoot); 
+    tree_print(copyRoot, 0, cout); 
+  } 
+
+  if(debug){
+    tree_node<int>* ourRoot = new tree_node<int>(25); 
+    tree_insert(ourRoot, 12); 
+    tree_insert(ourRoot, 39);  
+    tree_insert(ourRoot, 10); 
+    tree_insert(ourRoot, 14); 
+    cout<<"complex case copy: "<<endl; 
+    tree_node<int>* copyRoot; 
+    copyRoot = tree_copy(ourRoot); 
+    tree_print(copyRoot, 0, cout); 
+  }
+
+  return true; 
+}
+
+bool test_add(bool debug){
+  if(false){
+    tree_node<int>* srcTree = new tree_node<int>(10); 
+    tree_insert(srcTree, 13); 
+    tree_insert(srcTree, 9);
+    cout<<"srcTree: \n"; 
+    tree_print(srcTree, 0, cout);   
+
+    tree_node<int>* destTree = new tree_node<int>(11); 
+    tree_insert(destTree, 8);
+    tree_insert(destTree, 15); 
+    cout<<"destTree: \n"; 
+    tree_print(destTree, 0, cout); 
+
+    cout<<"added tree:\n"; 
+    tree_add(destTree, srcTree); 
+    tree_print(destTree, 0, cout); 
+
+  }
+
+  if(debug){
+    tree_node<int>* srcTree = new tree_node<int>(10); 
+    tree_insert(srcTree, 3); 
+    tree_node<int>* destTree = new tree_node<int>(15); 
+    tree_insert(destTree, 5); 
+
+    cout<<"asymmetrical case: \n"; 
+    cout<<"src tree: \n"; 
+    tree_print(srcTree, 0, cout); 
+
+    cout<<"dest tree: \n"; 
+    tree_print(destTree, 0, cout); 
+
+    cout<<"added tree:\n"; 
+    tree_add(destTree, srcTree);
+    tree_print(destTree, 0, cout);
+  }
+
+  if(debug){
+    //whack case 
+    tree_node<int>* srcTree = new tree_node<int>(25); 
+    tree_insert(srcTree, 24);  
+    tree_insert(srcTree, 28); 
+    cout<<"src tree\n"; 
+    tree_print(srcTree, 0, cout); 
+
+    tree_node<int>* destTree = new tree_node<int>(10); 
+    tree_insert(destTree, 16); 
+    tree_insert(destTree, 18); 
+    tree_insert(destTree, 4); 
+    tree_insert(destTree, 6); 
+    tree_insert(destTree, 41); 
+    tree_insert(destTree, 26);
+    tree_insert(destTree, 3);
+
+    cout<<"root tree\n"; 
+    tree_print(destTree, 0, cout);
+
+    cout<<"added tree\n"; 
+    tree_add(destTree, srcTree); 
+    tree_print(destTree, 0, cout); 
+
+  }
+
+  if(debug){
+    tree_node<int>* srcTree = new tree_node<int>(11); 
+    tree_insert(srcTree, 17);  
+    tree_insert(srcTree, 19); 
+    tree_insert(srcTree, 15);
+    tree_insert(srcTree, 5);
+    tree_insert(srcTree, 9); 
+    tree_insert(srcTree, 3); 
+    tree_insert(srcTree, 1); 
+
+    cout<<"complex tree case: src tree\n"; 
+    tree_print(srcTree, 0, cout);  
+
+    tree_node<int>* destTree = new tree_node<int>(10); 
+    tree_insert(destTree, 16); 
+    tree_insert(destTree, 18); 
+    tree_insert(destTree, 4); 
+    tree_insert(destTree, 6); 
+    tree_insert(destTree, 14); 
+    tree_insert(destTree, 12); 
+    tree_insert(destTree, 0);   
+
+    cout<<"complex tree case: dest tree\n"; 
+    tree_print(destTree, 0, cout);   //ok something off about how this tree was inserted but we'll see 
+
+    cout<<"added tree: \n";
+    tree_add(destTree,srcTree); 
+    tree_print(destTree, 0, cout);
+
+  }
+}
+
+bool test_sort_tree(bool debug){
+  if(debug){
+    int a[]= {0,1,2}; 
+    cout<<"testing tree from sort simple case: \n"; 
+    tree_node<int>* myTree = tree_from_sorted_list(a, 3); 
+    tree_print(myTree, 0, cout); 
+  }
+
+  if(true){
+    int a[]= {0,1,2,3,4,5}; 
+    cout<<"testing tree from sort simple case: \n"; 
+    tree_node<int>* myTree = tree_from_sorted_list(a, 6); 
+    tree_print(myTree, 0, cout); 
+  }
+}
 bool test_stub(bool debug = false)
 {
   if (debug){
@@ -18,8 +301,41 @@ TEST(TEST_STUB, TestStub) {
   EXPECT_EQ(1, test_stub(false));
 }
 
+TEST(TEST_PRINT, testPrint){
+  EXPECT_EQ(1, test_print(false)); 
+}
 
+TEST(TEST_PRE_ORDER, testPreOrder){
+  EXPECT_EQ(1, test_pre_order(false)); 
+}
 
+TEST(TEST_POST_ORDER, testPostOrder){
+  EXPECT_EQ(1, test_post_order(false)); 
+}
+
+TEST(TEST_IN_ORDER, testInOrder){
+  EXPECT_EQ(1, test_in_order(false));
+}
+
+TEST(TEST_BST_FUNCTIONS, testClear){
+  EXPECT_EQ(1, test_clear(false));
+}
+
+TEST(TEST_BST_FUNCTIONS, testErase){
+  EXPECT_EQ(1, test_erase(true));
+}
+
+TEST(TEST_BST_FUNCTIONS, testCopy){
+  EXPECT_EQ(1, test_copy(false)); 
+}
+
+TEST(TEST_BST_FUNCTION, testAdd){
+  EXPECT_EQ(1, test_add(false)); 
+}
+
+TEST(TEST_BST_FUNCTIONS, testTreeFromList){
+  EXPECT_EQ(1, test_sort_tree(false)); 
+}
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
