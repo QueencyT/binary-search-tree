@@ -12,7 +12,6 @@ template <typename T>
 void tree_insert(tree_node<T>* &root, const T& insert_me){
     if(root == NULL){
         root = new tree_node<T>(insert_me); //should be null left and right //shouldn't matter that it's null since we are inserting to null space 
-        //return; //kind of like a break statement in a loop 
     } 
     else if(insert_me < root->_item){
         tree_insert(root->_left, insert_me); 
@@ -84,7 +83,7 @@ void tree_print_debug(tree_node<T>* root, int depth=0, ostream& outs=cout){
         return; 
 
     tree_print_debug(root->_right, depth + 1, outs); 
-    outs<<setw(4 * depth)<<"["<<root->_height<<":"<<root->balance_factor()<<"]"<<root->_item<<endl; 
+    outs<<setw(4 * depth)<<"[H:"<<root->_height<<": B:"<<root->balance_factor()<<"]"<<root->_item<<endl; 
     tree_print_debug(root->_left, depth + 1, outs); 
     //ignore for now 
 }
@@ -116,7 +115,7 @@ void tree_clear(tree_node<T>* &root){ //have to go to end and delete?
 //you have to remember that root and what it means changes with each call
 
 template <typename T> //erase target from the tree
-bool tree_erase(tree_node<T>*& root, const T& target){
+bool tree_erase(tree_node<T>*& root, const T& target){ //maybe try root == &target if still not working
     tree_node<T>* deletePtr = NULL; 
 
     if(!root){
@@ -130,12 +129,7 @@ bool tree_erase(tree_node<T>*& root, const T& target){
             root = rightNode; 
         }
         else{
-            //T maxVal; 
-            tree_remove_max(root, root->_item);  //? B. //if problem
-            //because we want to actually remove the real item and this is not removing it? idek
-            //tree_remove_max(root, maxVal); 
-            //root->_item = maxVal; 
-            //put maxVal into root 
+            tree_remove_max(root, root->_item);  //? B. //if problem 
         }
         return true; 
     }
@@ -146,8 +140,8 @@ bool tree_erase(tree_node<T>*& root, const T& target){
     else{
         tree_erase(root->_right, target); 
     }
-    
-    //NEED TO UPDATE HEIGHT OR NO?
+
+    root->update_height(); 
     return(deletePtr != NULL); //to see if something was deleted or not //NEED to ask professor
     //what if we end up erasing a root? then what? //so no can't just delete the rightmost node
 }
@@ -318,6 +312,7 @@ tree_node<T>* tree_from_sorted_list(const T* a, int size){//not snug array Im gu
     tree_insert(ourRoot, a[midPoint]);
     ourRoot->_left = tree_from_sorted_list(a, midPoint);
     ourRoot->_right = tree_from_sorted_list(a + midPoint + 1, size - midPoint - 1);  
+    ourRoot->update_height(); 
     return ourRoot;  
 } //?
 

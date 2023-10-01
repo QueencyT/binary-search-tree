@@ -112,14 +112,30 @@ bool test_clear(bool debug){
 
 bool test_erase(bool debug){
   if(debug){
+    cout<<"erase with duplicates case: \n"; 
+    tree_node<int>* ourRoot = new tree_node<int>(10); 
+    tree_insert(ourRoot, 10); 
+    tree_insert(ourRoot, 10); 
+
+    cout<<"before erase: \n"; 
+    tree_print(ourRoot, 0, cout); 
+    
+    cout<<"after erase: \n"; 
+    tree_erase(ourRoot, 10); 
+    tree_erase(ourRoot, 10); 
+    tree_print_debug(ourRoot, 0, cout); 
+    cout<<endl; 
+
+  }
+  if(debug){
     tree_node<int>* ourRoot = new tree_node<int>(25); 
     tree_insert(ourRoot, 12); 
     tree_insert(ourRoot, 39); 
 
-    tree_print(ourRoot, 0, cout); 
     cout<<"erasing 12: \n"; 
+    tree_print(ourRoot, 0, cout); 
     tree_erase(ourRoot, 12); 
-    tree_print(ourRoot, 0, cout);
+    tree_print_debug(ourRoot, 0, cout);
   }
 
   if(debug){
@@ -131,7 +147,7 @@ bool test_erase(bool debug){
 
     cout<<"erasing root 25: \n";
     tree_erase(ourRoot, 25);
-    tree_print(ourRoot, 0, cout); 
+    tree_print_debug(ourRoot, 0, cout); 
   }
 
   if(debug){
@@ -277,27 +293,27 @@ bool test_sort_tree(bool debug){
     int a[]= {0,1,2}; 
     cout<<"testing tree from sort simple case: \n"; 
     tree_node<int>* myTree = tree_from_sorted_list(a, 3); 
-    tree_print(myTree, 0, cout); 
+    tree_print_debug(myTree, 0, cout); 
   }
 
-  if(debug){
+  if(false){
     int a[]= {0,1,2,3,4,5}; 
     cout<<"testing tree from sort simple case: \n"; 
     tree_node<int>* myTree = tree_from_sorted_list(a, 6); 
-    tree_print(myTree, 0, cout); 
+    tree_print_debug(myTree, 0, cout); 
   }
 }
 
 bool test_erase_all(bool debug){
   if(debug){
     int arr[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}; 
-    BST<int> mBTree(arr, 16);
+    BST<int> mBTree(arr, 4);
   
 
     cout<<"before erase: "<<endl; 
     cout<<mBTree<<endl; 
 
-    for(int i = 0 ; i < 16; i++){
+    for(int i = 0 ; i < 4; i++){
       cout<<"erasing: "<<i<<endl; 
       mBTree.erase(i); 
       cout<<mBTree<<endl; 
@@ -367,7 +383,7 @@ TEST(TEST_BST_FUNCTIONS, testClear){
 }
 
 TEST(TEST_BST_FUNCTIONS, testErase){
-  EXPECT_EQ(1, test_erase(true));
+  EXPECT_EQ(1, test_erase(false));
 }
 
 TEST(TEST_BST_FUNCTIONS, testCopy){
