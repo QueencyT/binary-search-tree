@@ -30,6 +30,7 @@ public:
 
     ~BST(){
         tree_clear(_root); 
+        _root = NULL; //doing this just for my peace of mind 
     }
 
     //. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
@@ -49,6 +50,7 @@ public:
     //assuming this just clear again? 
     void clear_all(){
         tree_clear(_root); 
+        _root = NULL; //for my sanity
     }
 
     bool empty()const{

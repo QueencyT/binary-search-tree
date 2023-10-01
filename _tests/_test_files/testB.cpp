@@ -4,6 +4,7 @@
 using namespace std;
 
 #include "../../includes/bst_functions/bst_functions.h"
+#include "../../includes/bst/bst.h"
 
 bool test_print(bool debug){
   tree_node<int>* ourRoot = new tree_node<int>(25); 
@@ -176,7 +177,7 @@ bool test_copy(bool debug){
 }
 
 bool test_add(bool debug){
-  if(false){
+  if(debug){
     tree_node<int>* srcTree = new tree_node<int>(10); 
     tree_insert(srcTree, 13); 
     tree_insert(srcTree, 9);
@@ -279,11 +280,32 @@ bool test_sort_tree(bool debug){
     tree_print(myTree, 0, cout); 
   }
 
-  if(true){
+  if(debug){
     int a[]= {0,1,2,3,4,5}; 
     cout<<"testing tree from sort simple case: \n"; 
     tree_node<int>* myTree = tree_from_sorted_list(a, 6); 
     tree_print(myTree, 0, cout); 
+  }
+}
+
+bool test_erase_all(bool debug){
+  if(debug){
+    int arr[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}; 
+    BST<int> mBTree(arr, 16);
+  
+
+    cout<<"before erase: "<<endl; 
+    cout<<mBTree<<endl; 
+
+    for(int i = 0 ; i < 16; i++){
+      cout<<"erasing: "<<i<<endl; 
+      mBTree.erase(i); 
+      cout<<mBTree<<endl; 
+      cout<<boolalpha<<"mBtree empty?: "<<mBTree.empty()<<endl; 
+    }
+    
+    cout<<boolalpha<<"tree empty?: "<<(mBTree.empty())<<endl; 
+
   }
 }
 bool test_stub(bool debug = false)
@@ -322,7 +344,7 @@ TEST(TEST_BST_FUNCTIONS, testClear){
 }
 
 TEST(TEST_BST_FUNCTIONS, testErase){
-  EXPECT_EQ(1, test_erase(true));
+  EXPECT_EQ(1, test_erase(false));
 }
 
 TEST(TEST_BST_FUNCTIONS, testCopy){
@@ -335,6 +357,10 @@ TEST(TEST_BST_FUNCTION, testAdd){
 
 TEST(TEST_BST_FUNCTIONS, testTreeFromList){
   EXPECT_EQ(1, test_sort_tree(false)); 
+}
+
+TEST(TEST_BST_FUNCTION, testEraseAll){
+  EXPECT_EQ(1, test_erase_all(true)); 
 }
 
 int main(int argc, char **argv) {
