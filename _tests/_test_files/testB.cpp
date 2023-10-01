@@ -174,7 +174,7 @@ bool test_copy(bool debug){
     cout<<"simple case copy: "<<endl; 
     tree_node<int>* copyRoot; 
     copyRoot = tree_copy(ourRoot); 
-    tree_print(copyRoot, 0, cout); 
+    tree_print_debug(copyRoot, 0, cout); 
   } 
 
   if(debug){
@@ -186,7 +186,7 @@ bool test_copy(bool debug){
     cout<<"complex case copy: "<<endl; 
     tree_node<int>* copyRoot; 
     copyRoot = tree_copy(ourRoot); 
-    tree_print(copyRoot, 0, cout); 
+    tree_print_debug(copyRoot, 0, cout); 
   }
 
   return true; 
@@ -387,7 +387,7 @@ TEST(TEST_BST_FUNCTIONS, testErase){
 }
 
 TEST(TEST_BST_FUNCTIONS, testCopy){
-  EXPECT_EQ(1, test_copy(false)); 
+  EXPECT_EQ(1, test_copy(true)); 
 }
 
 TEST(TEST_BST_FUNCTION, testAdd){
@@ -399,7 +399,7 @@ TEST(TEST_BST_FUNCTIONS, testTreeFromList){
 }
 
 TEST(TEST_BST_FUNCTION, testEraseAll){
-  EXPECT_EQ(1, test_erase_all(true)); 
+  EXPECT_EQ(1, test_erase_all(false)); 
 }
 
 TEST(TEST_BST_FUNCTIONS, testSortOneArg){

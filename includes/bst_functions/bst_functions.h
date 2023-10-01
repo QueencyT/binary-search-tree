@@ -259,7 +259,7 @@ tree_node<T>* tree_copy(tree_node<T>* root){ //making copies of empty??
     tree_node<T>* copyRoot = new tree_node<T>(root->_item, NULL, NULL); 
     copyRoot->_left = tree_copy(root->_left); 
     copyRoot->_right = tree_copy(root->_right); 
-
+    copyRoot->update_height();
     return copyRoot; 
 }
 

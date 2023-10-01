@@ -12,7 +12,6 @@ public:
 
     BST(const T *sorted_list, int size = -1){
         _root = tree_from_sorted_list(sorted_list, size); 
-        cout<<"CREATED HEIGHT"<<_root->_height<<endl; 
     }
     //. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     BST(const BST<T> &copy_me){ //don't need to
