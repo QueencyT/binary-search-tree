@@ -117,7 +117,7 @@ void tree_clear(tree_node<T>* &root){ //have to go to end and delete?
 
 template <typename T> //erase target from the tree
 bool tree_erase(tree_node<T>*& root, const T& target){
-    tree_node<T>* deletePtr; 
+    tree_node<T>* deletePtr = NULL; 
 
     if(!root){
         return false; 
@@ -130,11 +130,11 @@ bool tree_erase(tree_node<T>*& root, const T& target){
             root = rightNode; 
         }
         else{
-            T maxVal; 
-            tree_remove_max(root, root->item);  //? B. //if problem
+            //T maxVal; 
+            tree_remove_max(root, root->_item);  //? B. //if problem
             //because we want to actually remove the real item and this is not removing it? idek
             //tree_remove_max(root, maxVal); 
-            root->_item = maxVal; 
+            //root->_item = maxVal; 
             //put maxVal into root 
         }
         return true; 
@@ -148,7 +148,7 @@ bool tree_erase(tree_node<T>*& root, const T& target){
     }
     
     //NEED TO UPDATE HEIGHT OR NO?
-    return(deletePtr == NULL); //to see if something was deleted or not //NEED to ask professor
+    return(deletePtr != NULL); //to see if something was deleted or not //NEED to ask professor
     //what if we end up erasing a root? then what? //so no can't just delete the rightmost node
 }
 //erase a specific value from tree

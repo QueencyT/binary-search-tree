@@ -127,11 +127,11 @@ bool test_erase(bool debug){
     tree_insert(ourRoot, 12); 
     tree_insert(ourRoot, 39); 
     cout<<"simple erase case root:\n"; 
-    tree_print_debug(ourRoot, 0, cout); 
+    tree_print(ourRoot, 0, cout); 
 
     cout<<"erasing root 25: \n";
     tree_erase(ourRoot, 25);
-    tree_print_debug(ourRoot, 0, cout); 
+    tree_print(ourRoot, 0, cout); 
   }
 
   if(debug){
@@ -140,12 +140,12 @@ bool test_erase(bool debug){
     tree_insert(ourRoot, 39); 
     tree_insert(ourRoot, 10);
     tree_insert(ourRoot, 14);  
-    cout<<"complex erase case root:\n"; 
-    tree_print_debug(ourRoot, 0, cout); 
+    cout<<"complex erase case 12:\n"; 
+    tree_print(ourRoot, 0, cout); 
 
     cout<<"erasing root 12: \n";
     tree_erase(ourRoot, 12); //what if duplicate values ?
-    tree_print_debug(ourRoot, 0, cout); 
+    tree_print(ourRoot, 0, cout); 
   }
   return true; 
 }
@@ -367,7 +367,7 @@ TEST(TEST_BST_FUNCTIONS, testClear){
 }
 
 TEST(TEST_BST_FUNCTIONS, testErase){
-  EXPECT_EQ(1, test_erase(false));
+  EXPECT_EQ(1, test_erase(true));
 }
 
 TEST(TEST_BST_FUNCTIONS, testCopy){
@@ -383,11 +383,11 @@ TEST(TEST_BST_FUNCTIONS, testTreeFromList){
 }
 
 TEST(TEST_BST_FUNCTION, testEraseAll){
-  EXPECT_EQ(1, test_erase_all(false)); 
+  EXPECT_EQ(1, test_erase_all(true)); 
 }
 
 TEST(TEST_BST_FUNCTIONS, testSortOneArg){
-  EXPECT_EQ(1, test_sort_one_arg(true));
+  EXPECT_EQ(1, test_sort_one_arg(false));
 }
 
 int main(int argc, char **argv) {
