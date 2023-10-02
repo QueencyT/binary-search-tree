@@ -39,7 +39,8 @@ public:
     }
 
     void erase(const T &target){
-        tree_erase(_root, target); 
+        bool success = tree_erase(_root, target); 
+        cout<<target<<" erased successful: "<<boolalpha<<success<<endl; 
     }
 
     //const so can't change obj

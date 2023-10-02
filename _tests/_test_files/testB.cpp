@@ -112,21 +112,25 @@ bool test_clear(bool debug){
 
 bool test_erase(bool debug){
 
-  if(debug){
+  if(true){
     srand(time(0)); 
     cout<<"testing: case 1: "<<endl; 
     //[28][44][34][38][80][62][62][62][66][66][84][72][72][74][74][78][80][80]
-    int arr[] = {28,44,24,38,80,62,62,66,66,84,72,72,74,74,78,80,80}; 
+    int arr[] = {24,24,28, 38, 62,62,66,66, 72,72,74,74,78,80,80, 80,84}; 
     BST<int> mTree(arr, 17); 
     cout<<"tree before erase: "<<endl; 
     cout<<mTree<<endl; 
+    mTree.erase(62);
+    cout<<mTree<<endl;
 
+    //erasing 62 
+    /*
     while(!mTree.empty()){
       int randIndex = rand() % 17; 
       cout<<"erasing: "<<arr[randIndex]<<endl; 
       mTree.erase(arr[randIndex]); 
       cout<<mTree<<endl; 
-    }
+    }*/
   }
   if(false){
     cout<<"erase with duplicates case: \n"; 
@@ -164,7 +168,10 @@ bool test_erase(bool debug){
 
     cout<<"erasing root 25: \n";
     tree_erase(ourRoot, 25);
+    tree_erase(ourRoot, 39);
+    tree_erase(ourRoot, 12);
     tree_print_debug(ourRoot, 0, cout); 
+    cout<<boolalpha<<"empty?"<<(ourRoot == NULL)<<endl; 
   }
 
   if(false){
@@ -313,7 +320,7 @@ bool test_sort_tree(bool debug){
     tree_print_debug(myTree, 0, cout); 
   }
 
-  if(false){
+  if(true){
     int a[]= {0,1,2,3,4,5}; 
     cout<<"testing tree from sort simple case: \n"; 
     tree_node<int>* myTree = tree_from_sorted_list(a, 6); 
@@ -412,7 +419,7 @@ TEST(TEST_BST_FUNCTION, testAdd){
 }
 
 TEST(TEST_BST_FUNCTIONS, testTreeFromList){
-  EXPECT_EQ(1, test_sort_tree(false)); 
+  EXPECT_EQ(1, test_sort_tree(true)); 
 }
 
 TEST(TEST_BST_FUNCTION, testEraseAll){

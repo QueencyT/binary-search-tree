@@ -116,7 +116,7 @@ void tree_clear(tree_node<T>* &root){ //have to go to end and delete?
 
 template <typename T> //erase target from the tree
 bool tree_erase(tree_node<T>*& root, const T& target){ //maybe try root == &target if still not working
-    tree_node<T>* deletePtr = NULL; 
+    bool deleted = false; 
 
     if(!root){
         return false; 
@@ -135,14 +135,14 @@ bool tree_erase(tree_node<T>*& root, const T& target){ //maybe try root == &targ
     }
 
     if(target < root->_item){
-        tree_erase(root->_left, target); 
+        deleted = tree_erase(root->_left, target); 
     }
     else{
-        tree_erase(root->_right, target); 
+        deleted = tree_erase(root->_right, target); 
     }
 
     root->update_height(); 
-    return(deletePtr != NULL); //to see if something was deleted or not //NEED to ask professor
+    return(deleted); //to see if something was deleted or not //NEED to ask professor
     //what if we end up erasing a root? then what? //so no can't just delete the rightmost node
 }
 //erase a specific value from tree
@@ -302,11 +302,6 @@ tree_node<T>* tree_from_sorted_list(const T* a, int size){//not snug array Im gu
     if(size == 0){
         return ourRoot; 
     }
-
-    /*if(a[0] == a[midPoint]){
-       tree_insert(ourRoot, a[midPoint]);
-       return ourRoot; 
-    }*/
 
     tree_insert(ourRoot, a[midPoint]);
     ourRoot->_left = tree_from_sorted_list(a, midPoint);
