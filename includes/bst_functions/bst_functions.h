@@ -122,13 +122,15 @@ bool tree_erase(tree_node<T>*& root, const T& target){
         return deleted; 
     }
 
+    //left subtree but right is null 
+    
     if(root->_item == target){
         if(root->_left == NULL){ //in the case where there is no left subtree 
             tree_node<T>* rightNode = root->_right; 
             delete root; 
             root = rightNode; 
         }
-        else{
+        else{ //in the case where there is a left subtree 
             tree_remove_max(root, root->_item);  //? B. //if problem 
         }
         deleted = true;  

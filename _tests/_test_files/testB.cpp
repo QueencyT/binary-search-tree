@@ -103,6 +103,16 @@ bool test_clear(bool debug){
 
   if(debug){
     cout<<"before clear: "<<endl; 
+    int arr[] = {0,1,2,3,4}; 
+    BST<int> mTree(arr, 5); 
+    cout<<mTree<<endl; 
+
+    mTree.clear_all(); 
+    cout<<"empty?: " <<boolalpha<<mTree.empty()<<endl; 
+  }
+
+  if(debug){
+    cout<<"before clear: "<<endl; 
     tree_print(ourRoot, 0, cout); //gotta make sure height is set correctly to
     tree_clear(ourRoot); 
     cout<<"after clear: "<<endl; 
@@ -112,7 +122,7 @@ bool test_clear(bool debug){
 
 bool test_erase(bool debug){
 
-  if(true){
+  if(false){
     srand(time(0)); 
     cout<<"testing: case 1: "<<endl; 
     //[28][44][34][38][80][62][62][62][66][66][84][72][72][74][74][78][80][80]
@@ -146,14 +156,14 @@ bool test_erase(bool debug){
     cout<<endl; 
 
   }
-  if(false){
+  if(true){
     tree_node<int>* ourRoot = new tree_node<int>(25); 
     tree_insert(ourRoot, 12); 
-    tree_insert(ourRoot, 39); 
+    //tree_insert(ourRoot, 39); 
 
-    cout<<"erasing 12: \n"; 
+    cout<<"erasing 25: \n"; 
     tree_print(ourRoot, 0, cout); 
-    tree_erase(ourRoot, 12); 
+    tree_erase(ourRoot, 25); 
     tree_print_debug(ourRoot, 0, cout);
   }
 
@@ -401,11 +411,11 @@ TEST(TEST_IN_ORDER, testInOrder){
 }
 
 TEST(TEST_BST_FUNCTIONS, testClear){
-  EXPECT_EQ(1, test_clear(false));
+  EXPECT_EQ(1, test_clear(true));
 }
 
 TEST(TEST_BST_FUNCTIONS, testErase){
-  EXPECT_EQ(1, test_erase(true));
+  EXPECT_EQ(1, test_erase(false));
 }
 
 TEST(TEST_BST_FUNCTIONS, testCopy){

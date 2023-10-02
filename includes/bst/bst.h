@@ -23,7 +23,7 @@ public:
         if(this == &rhs){
             return *this; 
         }
-        delete this; 
+        tree_clear(_root); //modified this
         _root = tree_copy(rhs._root);  
         return *this; 
     }
