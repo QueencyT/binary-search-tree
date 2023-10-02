@@ -8,20 +8,14 @@ class BST{
 public:
     BST(){
         _root = NULL; 
-        cout<<"constructed tree: \n"; 
-        tree_print(_root); 
     }
 
     BST(const T *sorted_list, int size = -1){
-        _root = tree_from_sorted_list(sorted_list, size);
-        cout<<"constructed tree from list: \n"; 
-        tree_print(_root);  
+        _root = tree_from_sorted_list(sorted_list, size);  
     }
     //. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     BST(const BST<T> &copy_me){ //don't need to
         _root = tree_copy(copy_me._root); 
-        cout<<"constructed tree from copy ctor: \n"; 
-        tree_print(_root); 
     } 
 
     //need to check for self assignment before delete 
@@ -46,7 +40,6 @@ public:
 
     void erase(const T &target){
         bool success = tree_erase(_root, target); 
-        cout<<target<<" erased successful: "<<boolalpha<<success<<endl; 
     }
 
     //const so can't change obj
@@ -66,13 +59,13 @@ public:
     
     friend ostream &operator<<(ostream &outs, const BST<T> &tree)
     {
-        const bool debug = false;
+        const bool debug = true;
         if (debug){
             cout<<"-------------------------------"<<endl;
             tree_print_debug(tree._root, 0, outs);
             cout<<". . . . . . . . . . . . . . . ."<<endl;
         }
-        tree_print(tree._root, 0, outs);
+       // tree_print(tree._root, 0, outs);
         return outs;
     }
 

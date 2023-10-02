@@ -119,7 +119,6 @@ bool tree_erase(tree_node<T>*& root, const T& target){
     bool deleted = false; 
 
     if(!root){
-        deleted = false; 
         return deleted; 
     }
 
@@ -132,11 +131,9 @@ bool tree_erase(tree_node<T>*& root, const T& target){
         else{
             tree_remove_max(root, root->_item);  //? B. //if problem 
         }
-        deleted = true; 
-        return deleted; 
+        deleted = true;  
     }
-
-    if(target < root->_item){
+    else if(target < root->_item){
         deleted = tree_erase(root->_left, target); 
     }
     else{
