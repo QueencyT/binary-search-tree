@@ -8,14 +8,20 @@ class BST{
 public:
     BST(){
         _root = NULL; 
+        cout<<"constructed tree: \n"; 
+        tree_print(_root); 
     }
 
     BST(const T *sorted_list, int size = -1){
-        _root = tree_from_sorted_list(sorted_list, size); 
+        _root = tree_from_sorted_list(sorted_list, size);
+        cout<<"constructed tree from list: \n"; 
+        tree_print(_root);  
     }
     //. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     BST(const BST<T> &copy_me){ //don't need to
         _root = tree_copy(copy_me._root); 
+        cout<<"constructed tree from copy ctor: \n"; 
+        tree_print(_root); 
     } 
 
     //need to check for self assignment before delete 

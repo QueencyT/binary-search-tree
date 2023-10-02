@@ -115,11 +115,12 @@ void tree_clear(tree_node<T>* &root){ //have to go to end and delete?
 //you have to remember that root and what it means changes with each call
 
 template <typename T> //erase target from the tree
-bool tree_erase(tree_node<T>*& root, const T& target){ //maybe try root == &target if still not working
+bool tree_erase(tree_node<T>*& root, const T& target){ 
     bool deleted = false; 
 
     if(!root){
-        return false; 
+        deleted = false; 
+        return deleted; 
     }
 
     if(root->_item == target){
@@ -131,7 +132,8 @@ bool tree_erase(tree_node<T>*& root, const T& target){ //maybe try root == &targ
         else{
             tree_remove_max(root, root->_item);  //? B. //if problem 
         }
-        return true; 
+        deleted = true; 
+        return deleted; 
     }
 
     if(target < root->_item){
@@ -154,7 +156,7 @@ void tree_remove_max(tree_node<T>* &root, T& max_value){
     } 
 
     //want to remove max so going right
-    if(root->_right == NULL){ //what if it has a left child 
+    if(root->_right == NULL){ 
         max_value = root->_item; 
         if(root->_left != NULL){
             tree_node<T>* leftNode = root->_left; 
