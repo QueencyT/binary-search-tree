@@ -120,17 +120,15 @@ bool test_erase(bool debug){
     BST<int> mTree(arr, 17); 
     cout<<"tree before erase: "<<endl; 
     cout<<mTree<<endl; 
-    mTree.erase(62);
-    cout<<mTree<<endl;
 
     //erasing 62 
-    /*
+    
     while(!mTree.empty()){
       int randIndex = rand() % 17; 
       cout<<"erasing: "<<arr[randIndex]<<endl; 
       mTree.erase(arr[randIndex]); 
       cout<<mTree<<endl; 
-    }*/
+    }
   }
   if(false){
     cout<<"erase with duplicates case: \n"; 

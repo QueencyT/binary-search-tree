@@ -140,7 +140,8 @@ bool tree_erase(tree_node<T>*& root, const T& target){
         deleted = tree_erase(root->_right, target); 
     }
 
-    root->update_height(); 
+    if(root)
+        root->update_height(); 
     return(deleted); //to see if something was deleted or not //NEED to ask professor
     //what if we end up erasing a root? then what? //so no can't just delete the rightmost node
 }
@@ -155,11 +156,11 @@ void tree_remove_max(tree_node<T>* &root, T& max_value){
     //want to remove max so going right
     if(root->_right == NULL){ 
         max_value = root->_item; 
-        if(root->_left != NULL){
+        if(root->_left != NULL){ //if there is a left child
             tree_node<T>* leftNode = root->_left; 
             delete root; 
             root = leftNode; //must ask professor 
-        }else{ //else delete root immediately since has no left child
+        }else{ //else delete root immediately since has no left child and no right child 
             delete root; 
             root = NULL;
             return; 
