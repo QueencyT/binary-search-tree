@@ -59,13 +59,13 @@ public:
     
     friend ostream &operator<<(ostream &outs, const BST<T> &tree)
     {
-        const bool debug = true;
+        const bool debug = false;
         if (debug){
             cout<<"-------------------------------"<<endl;
             tree_print_debug(tree._root, 0, outs);
             cout<<". . . . . . . . . . . . . . . ."<<endl;
         }
-        //tree_print(tree._root, 0, outs);
+        tree_print(tree._root, 0, outs);
         return outs;
     }
 

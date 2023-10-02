@@ -111,7 +111,24 @@ bool test_clear(bool debug){
 }
 
 bool test_erase(bool debug){
+
   if(debug){
+    srand(time(0)); 
+    cout<<"testing: case 1: "<<endl; 
+    //[28][44][34][38][80][62][62][62][66][66][84][72][72][74][74][78][80][80]
+    int arr[] = {28,44,24,38,80,62,62,66,66,84,72,72,74,74,78,80,80}; 
+    BST<int> mTree(arr, 17); 
+    cout<<"tree before erase: "<<endl; 
+    cout<<mTree<<endl; 
+
+    while(!mTree.empty()){
+      int randIndex = rand() % 17; 
+      cout<<"erasing: "<<arr[randIndex]<<endl; 
+      mTree.erase(arr[randIndex]); 
+      cout<<mTree<<endl; 
+    }
+  }
+  if(false){
     cout<<"erase with duplicates case: \n"; 
     tree_node<int>* ourRoot = new tree_node<int>(10); 
     tree_insert(ourRoot, 10); 
@@ -127,7 +144,7 @@ bool test_erase(bool debug){
     cout<<endl; 
 
   }
-  if(debug){
+  if(false){
     tree_node<int>* ourRoot = new tree_node<int>(25); 
     tree_insert(ourRoot, 12); 
     tree_insert(ourRoot, 39); 
@@ -138,7 +155,7 @@ bool test_erase(bool debug){
     tree_print_debug(ourRoot, 0, cout);
   }
 
-  if(debug){
+  if(false){
     tree_node<int>* ourRoot = new tree_node<int>(25); 
     tree_insert(ourRoot, 12); 
     tree_insert(ourRoot, 39); 
@@ -150,7 +167,7 @@ bool test_erase(bool debug){
     tree_print_debug(ourRoot, 0, cout); 
   }
 
-  if(debug){
+  if(false){
     tree_node<int>* ourRoot = new tree_node<int>(25); 
     tree_insert(ourRoot, 12); 
     tree_insert(ourRoot, 39); 
@@ -383,11 +400,11 @@ TEST(TEST_BST_FUNCTIONS, testClear){
 }
 
 TEST(TEST_BST_FUNCTIONS, testErase){
-  EXPECT_EQ(1, test_erase(false));
+  EXPECT_EQ(1, test_erase(true));
 }
 
 TEST(TEST_BST_FUNCTIONS, testCopy){
-  EXPECT_EQ(1, test_copy(true)); 
+  EXPECT_EQ(1, test_copy(false)); 
 }
 
 TEST(TEST_BST_FUNCTION, testAdd){

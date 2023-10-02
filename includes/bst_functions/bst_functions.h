@@ -303,10 +303,10 @@ tree_node<T>* tree_from_sorted_list(const T* a, int size){//not snug array Im gu
         return ourRoot; 
     }
 
-    if(a[0] == a[midPoint]){
+    /*if(a[0] == a[midPoint]){
        tree_insert(ourRoot, a[midPoint]);
        return ourRoot; 
-    }
+    }*/
 
     tree_insert(ourRoot, a[midPoint]);
     ourRoot->_left = tree_from_sorted_list(a, midPoint);
