@@ -26,7 +26,7 @@ void tree_insert(tree_node<T>* &root, const T& insert_me){
 
 template <typename T>
 tree_node<T>* tree_search(tree_node<T>* root, const T& target){
-    tree_node<T>* found; 
+    tree_node<T>* found = NULL; 
     
     if(root == NULL){//last node and still not found 
         return NULL; 
@@ -50,7 +50,7 @@ tree_node<T>* tree_search(tree_node<T>* root, const T& target){
 template <typename T>
 bool tree_search(tree_node<T>* root, const T& target, tree_node<T>* &found_ptr){
     found_ptr = tree_search(root, target); 
-    return (tree_search(root) == NULL); 
+    return (found_ptr == NULL); 
 }
 //bool is for found not found? 
 
@@ -93,7 +93,6 @@ template <typename T> //clear the tree
 void tree_clear(tree_node<T>* &root){ //have to go to end and delete? 
     if(root){
         tree_clear(root->_left); //if root->left ends up being null won't enter if statement and will automatically return
-        //will return to here
         tree_clear(root->_right); //if root->right ends up being null it wont enter if statement as well and will auto return here 
         delete root; //this means we're at a "last node" and so delete
         root = NULL; 
@@ -123,7 +122,7 @@ bool tree_erase(tree_node<T>*& root, const T& target){
     }
 
     //left subtree but right is null 
-    
+
     if(root->_item == target){
         if(root->_left == NULL){ //in the case where there is no left subtree 
             tree_node<T>* rightNode = root->_right; 
@@ -161,7 +160,7 @@ void tree_remove_max(tree_node<T>* &root, T& max_value){
         if(root->_left != NULL){ //if there is a left child
             tree_node<T>* leftNode = root->_left; 
             delete root; 
-            root = leftNode; //must ask professor 
+            root = leftNode; 
         }else{ //else delete root immediately since has no left child and no right child 
             delete root; 
             root = NULL;
