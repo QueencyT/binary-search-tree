@@ -34,8 +34,8 @@ tree_node<T>* tree_search(tree_node<T>* root, const T& target){
 template <typename T>
 bool tree_search(tree_node<T>* root, const T& target, tree_node<T>* &found_ptr){
     found_ptr = tree_search(root, target); 
-    cout<<"target: "<<target<<endl; 
-    cout<<"found: "<<(found_ptr != NULL); 
+    //cout<<"target: "<<target<<endl; 
+    //cout<<"found: "<<(found_ptr != NULL); 
     return (found_ptr != NULL); //we found a pointer return true
 }
 //bool is for found not found? 
@@ -43,17 +43,10 @@ bool tree_search(tree_node<T>* root, const T& target, tree_node<T>* &found_ptr){
 
 template <typename T>
 void tree_insert(tree_node<T>* &root, const T& insert_me){
-
-    //cout<<"insert me: "<<insert_me<<endl;
-    if(root)
-       cout<<"root: "<<root->_item<<endl; 
-   // cout<<"found: "<<boolalpha<<tree_search(root, insert_me); 
+; 
     if(root == NULL){
         root = new tree_node<T>(insert_me); //should be null left and right //shouldn't matter that it's null since we are inserting to null space 
     } 
-    else if(root->_item == insert_me){
-        return; 
-    }
     else if(insert_me < root->_item){
         tree_insert(root->_left, insert_me); 
     }
@@ -133,15 +126,14 @@ bool tree_erase(tree_node<T>*& root, const T& target){
     }
 
     //left subtree but right is null 
-
     if(root->_item == target){
         if(root->_left == NULL){ //in the case where there is no left subtree 
             tree_node<T>* rightNode = root->_right; 
             delete root; 
             root = rightNode; 
         }
-        else{ //in the case where there is a left subtree 
-            tree_remove_max(root, root->_item);  //? B. //if problem 
+        else{ //in the case where there is a left subtree //leftmost of right subtree
+            tree_remove_max(root->_left, root->_item);  //? B. //if problem 
         }
         deleted = true;  
     }
@@ -164,7 +156,6 @@ void tree_remove_max(tree_node<T>* &root, T& max_value){
     if(root == NULL){
         return; //empty so cannot remove 
     } 
-
     //want to remove max so going right
     if(root->_right == NULL){ 
         max_value = root->_item; 
@@ -294,19 +285,19 @@ void tree_add(tree_node<T>* & dest, const tree_node<T>* src){ ///so far working
 }
 //ok try with one nodes first
 
-//0 1 1 2 2 
-//sort an array of 10000 elements 
-//only accwaa 10 items at a time from a file
+
+//sort an array of 1,000,000 elements 
+//only access 10 items at a time from a file
 //merge sort
 template <typename T> // sorted array -> tree
 tree_node<T>* tree_from_sorted_list(const T* a, int size){//not snug array Im guessing 
     int midPoint = (size) /2.0; 
     tree_node<T>* ourRoot = NULL; 
 
-    if(size <= 0){
+    if(size == 0){
         return ourRoot; 
     }
-
+    
     tree_insert(ourRoot, a[midPoint]);
     ourRoot->_left = tree_from_sorted_list(a, midPoint);
     ourRoot->_right = tree_from_sorted_list(a + midPoint + 1, size - midPoint - 1);  

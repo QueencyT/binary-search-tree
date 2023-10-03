@@ -143,13 +143,14 @@ bool test_erase(bool debug){
 
     //erasing 62 
     
-   /* while(!mTree.empty()){
+  /* while(!mTree.empty()){
       int randIndex = rand() % 17; 
       cout<<"erasing: "<<arr[randIndex]<<endl; 
       mTree.erase(arr[randIndex]); 
       cout<<mTree<<endl; 
     }*/
   }
+
   if(false){
     cout<<"erase with duplicates case: \n"; 
     tree_node<int>* ourRoot = new tree_node<int>(10); 
@@ -443,7 +444,7 @@ TEST(TEST_BST_FUNCTIONS, testClear){
 }
 
 TEST(TEST_BST_FUNCTIONS, testErase){
-  EXPECT_EQ(1, test_erase(false));
+  EXPECT_EQ(1, test_erase(true));
 }
 
 TEST(TEST_BST_FUNCTIONS, testCopy){
@@ -455,7 +456,7 @@ TEST(TEST_BST_FUNCTION, testAdd){
 }
 
 TEST(TEST_BST_FUNCTIONS, testTreeFromList){
-  EXPECT_EQ(1, test_sort_tree(true)); 
+  EXPECT_EQ(1, test_sort_tree(false)); 
 }
 
 TEST(TEST_BST_FUNCTION, testEraseAll){
@@ -467,7 +468,7 @@ TEST(TEST_BST_FUNCTIONS, testSortOneArg){
 }
 
 TEST(TEST_BST_FUNCTIONS, testInsert){
-  EXPECT_EQ(1, test_insert(true));
+  EXPECT_EQ(1, test_insert(false));
 }
 
 int main(int argc, char **argv) {
